@@ -1,0 +1,26 @@
+[user]
+	name = Nicky Setia
+	email = nicky.setia@gmail.com
+[github]
+    user = NickyInside
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+	ui = auto
+[rerere]
+	enabled = true
+[pull]
+    rebase = true
+[advice]
+	pushNonFastForward = false
+[core]
+	whitespace = trailing-space,space-before-tab
+[diff]
+	renames = copies
+	mnemonicprefix = true
+[branch]
+	autosetupmerge = true
+[merge]
+	stat = tr
+

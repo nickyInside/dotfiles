@@ -1,0 +1,7 @@
+[
+    { "keys": ["ctrl+t"], "command": "toggle_side_bar" },
+    { "keys": ["ctrl+v"], "command": "paste_and_indent" },
+    { "keys": ["ctrl+shift+v"], "command": "paste" },
+    { "keys": ["ctrl+shift+x"], "command": "tidy_xml" },
+    { "keys": ["ctrl+shift+j"], "command": "prettify_json" }
+]

@@ -1,0 +1,88 @@
+vimrc
+
+" Prettify JSON files
+autocmd BufRead,BufNewFile *.json set filetype=json
+autocmd Syntax json sou ~/.vim/syntax/json.vim
+
+" Allow all backspacing
+set backspace=indent,eol,start
+
+set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
+filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
+set t_Co=256              " enable 256-color mode.
+syntax enable             " enable syntax highlighting (previously syntax on).
+colorscheme molokai       " set colorscheme
+set number                " show line numbers
+set laststatus=2          " last window always has a statusline
+filetype indent on        " activates indenting for files
+set nohlsearch            " Don't continue to highlight searched phrases.
+set incsearch             " But do highlight as you type your search.
+set ignorecase            " Make searches case-insensitive.
+set ruler                 " Always show info along bottom.
+set autoindent            " auto-indent
+set tabstop=4             " tab spacing
+set softtabstop=4         " unify
+set shiftwidth=4          " indent/outdent by 4 columns
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+if has('mouse')
+  set mouse=a
+endif
+
+" Enable syntax highlighting
+" Enable pattern match highlighting
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+if has("autocmd")
+  " Enable file type detection.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+set nojoinspaces
+set shiftround            " always indent/outdent to the nearest tabstop
+set expandtab             " use spaces instead of tabs
+set smarttab              " use tabs at the start of a line, spaces elsewhere
+set nowrap                " don't wrap text
+set nobackup              " emable backups
+set history=50            " 50 lines of command history
+set showcmd               " show incomplete commands
+set showmatch             " Search: jump to matches immediatelly
+set smartcase             " Search: set ignorecase if pattern contains upper case letter
+set incsearch             " Search: partial matches
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " Remember cursor position
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+else
+
+  set autoindent
+
+endif " has("autocmd")
+
+" Diffs the current buffer with the originally loaded file.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                  \ | wincmd p | diffthis
+endif
+
+set viminfo+=n~/.vim/.viminfo
+
+command PrettyJSON %!python -m json.tool
+
+
