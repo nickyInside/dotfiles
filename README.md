@@ -3,7 +3,8 @@ dotfiles
 
 These are mine :)
 
-This repository contains my configuration files.
+
+This repository contains some configuration files.
 
 #Installation
 
